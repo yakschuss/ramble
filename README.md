@@ -1,41 +1,64 @@
-# Ramble
+#Ramble
+Ramble is a easy-to-use blogging gem that allows ruby developers to simply
+incorporate blog posts into their applications/websites.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ramble`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
+## Set Up
+You can add it to your Gemfile:
+```
 gem 'ramble'
 ```
+then:
 
-And then execute:
+```
+bundle install
+```
+(or you can install it yourself)
+```
+gem install ramble
+```
 
-    $ bundle
 
-Or install it yourself as:
+then, create the posts directory
 
-    $ gem install ramble
+```
+mkdir app/blog_posts
+```
+and add `.md` files to the directory!
 
-## Usage
+The file must follow this format
 
-TODO: Write usage instructions here
+```
+20160706_name_of_blog_post.md
+```
+You can then access your posts by calling
 
-## Development
+```
+Ramble::BlogPost.all
+```
+or
+```
+Ramble::BlogPost.find_by_slug('name-of-blog-post')
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+### Order
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+for your index page, you can order the post by date like so:
+```
+Ramble::BlogPost.all(sort_by: :written_on, desc: true)
+```
+
+
+## Maintaining
+Ramble is currently being developed, and working on some essential
+features.
+
+TODO: 
+  -Category tagging for different posts
+  -Custom Meta Data attributes for posts
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ramble. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Pull requests are welcome! Be sure to test.
 
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
+##License
+The gem is available as open source under the terms of the MIT License.
